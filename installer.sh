@@ -300,6 +300,7 @@ install_agent_debian_ubuntu() {
 
     log "Installing Puppet repo for $OS"
     cd /tmp || return 1
+    curl -L https://apt.puppetlabs.com/pubkey.gpg | sudo apt-key add -
     eval "$DOWNLOADER $REPOURL" >> "${LOGFILE}" 2>&1
     dpkg -i $REPOFILE >> "${LOGFILE}" 2>&1
     rm -f $REPOFILE
